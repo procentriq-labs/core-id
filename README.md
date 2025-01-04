@@ -1,4 +1,4 @@
-# core-id
+# ProcentrIQ CoreID
 CoreID: A simple identity provider / authorization server handling authentication and user account management for ProcentrIQ projects
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
