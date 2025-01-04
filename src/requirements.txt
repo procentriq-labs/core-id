@@ -6,3 +6,5 @@ sqlalchemy
 alembic
 psycopg2-binary
 passlib[bcrypt]
+flask
+flask-sqlalchemy

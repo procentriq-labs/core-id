@@ -1,8 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
+from flask import Flask
+from fastapi.middleware.wsgi import WSGIMiddleware
 
 from app.config import load_settings, configure_logging
-from app.routes import api_router_v1
+from app.routes import api_router
+from app.pages import user_pages
 
 import logging
 
@@ -23,7 +26,12 @@ app = FastAPI(
     debug = settings.debug
 )
 
-app.include_router(api_router_v1, prefix="/v1")
+app.include_router(api_router)
+
+flask_app = Flask(__name__)
+flask_app.register_blueprint(user_pages)
+
+app.mount("/u/", WSGIMiddleware(flask_app))
 
 if __name__ == "__main__":
     uvicorn.run(app, host=settings.app_host, port=settings.app_port, debug=settings.debug)
