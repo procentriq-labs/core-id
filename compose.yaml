@@ -1,0 +1,12 @@
+services:
+  core-id:
+    build: 
+      context: ./src
+      target: production
+    image: core-id:prod # TODO add version number
+    env_file: .env
+    volumes:
+    - ./logs/coreid:/usr/src/logs
+    - ./config/coreid.yaml:/usr/src/config.yaml
+    ports:
+      - 8091:8000

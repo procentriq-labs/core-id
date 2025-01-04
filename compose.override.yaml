@@ -1,0 +1,27 @@
+version: '3'
+services:
+  core-id:
+    build: 
+      context: ./src
+      target: development
+    # build:
+    #   target: development  # Build the development stage of the Dockerfile
+    image: core-id:dev
+    environment:
+      - ENVIRONMENT=development
+      - PYTHONUNBUFFERED=1
+    volumes: # Mount src, as it's not copied into Dev Image
+      - ./src/app:/usr/src/app
+      - ./src/alembic:/usr/src/alembic
+      - ./src/alembic.ini:/usr/src/alembic.ini
+      - ./src/tests:/usr/src/tests  # Include tests only in the dev environment
+      - ./src/pytest.ini:/usr/src/pytest.ini  # Include tests only in the dev environment
+    depends_on:
+      - db
+  db:
+    image: 'postgres:16.4'
+    ports:
+      - 5438:5432
+    env_file: .env
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/

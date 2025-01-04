@@ -1,0 +1,17 @@
+.venv/
+
+logs/
+
+# example files for testing
+examples/
+
+# user uploads may contain personal data
+uploads/
+
+__pycache__
+
+db-data
+
+work
+
+.env

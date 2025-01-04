@@ -1,0 +1,30 @@
+default:
+  app_name: "CoreID"
+  app_host: "0.0.0.0:8000"
+  app_version: "v0.1"
+  contact:
+    distributor_name: "ProcentrIQ"
+    distributor_website: "https://procentriq.ch"
+    distributor_contact_email: "hi@procentriq.ch"
+    tos_url: "https://github.com/procentriq-labs/core-id/blob/main/LICENSE.txt"
+  debug: false
+  logging:
+    logfile_path: "./logs"
+    logfile_name: "coreid.log"
+    logfile_max_size_bytes: 10485760
+    logfile_max_count: 5
+  connections:
+    database_url: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}"
+  
+development:
+  app_name: "CoreID (Dev Build)"
+  debug: true
+  api_keys:
+    resend: "${RESEND_API_KEY}"
+  email:
+    sender_name: "ProcentrIQ Dev"
+    sender_email: "coreid-app@projects.procentriq.ch"
+
+production:
+  app_host: "0.0.0.0:8000"
+  debug: false

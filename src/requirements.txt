@@ -1,0 +1,8 @@
+fastapi[standard]
+pydantic-settings
+email-validator
+pyyaml
+sqlalchemy
+alembic
+psycopg2-binary
+passlib[bcrypt]

@@ -1,0 +1,27 @@
+# Ignore virtual environments
+.venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore tests
+tests/
+
+# Ignore instructions, etc
+gettingstarted.md
+
+# Ignore other temporary or development-related files
+*.swp
+*.tmp
+*.bak
+*.backup
+*.~*
+.DS_Store
+Thumbs.db
