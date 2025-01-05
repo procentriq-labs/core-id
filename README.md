@@ -3,6 +3,14 @@ CoreID: A simple identity provider / authorization server handling authenticatio
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
+## Features
+
+- [ ] **Authorization Code Flow** for login of human users from trusted clients
+- [ ] **Client Credentials Flow** for authorization of machine2machine apps
+- [ ] **Refresh Token Flow** to limit validity of access token
+- [ ] **Scopes** on a per-resource level
+- [ ] **Dynamic Client Registration** for creating new API credentials dynamically
+
 ## License
 
 This work is licensed under a
