@@ -5,7 +5,7 @@ from fastapi.middleware.wsgi import WSGIMiddleware
 
 from app.config import load_settings, configure_logging
 from app.routes import api_router
-from app.pages import user_pages
+from app.pages import flask_app
 
 import logging
 
@@ -27,9 +27,6 @@ app = FastAPI(
 )
 
 app.include_router(api_router)
-
-flask_app = Flask(__name__)
-flask_app.register_blueprint(user_pages)
 
 app.mount("/u/", WSGIMiddleware(flask_app))
 

@@ -1,0 +1,34 @@
+{#def form, app_name = "{{app_name}}", tenant="{{tenant}}"#}
+<AuthPageLayout title="Login" tenant={{ tenant }} app-name={{ app_name }}>
+          <Card>
+            <CardHeader className="text-center">
+              <CardTitle class="text-xl">Welcome back</CardTitle>
+              <CardDescription>Login with your credentials</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <WTForm
+              :form="{{ form }}"
+              action=""
+              method="POST">
+                <Button type="submit" className="w-full">
+                  Login
+                </Button>
+              </WTForm>
+            {# <div
+                    class="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+                    <span class="relative z-10 bg-background px-2 text-muted-foreground">
+                      Or continue with
+                    </span>
+                  </div> #}
+            </CardContent>
+            <CardFooter>
+              <div class="text-center text-sm">
+                Don&apos;t have an account?
+                <a href="#" class="underline underline-offset-4">
+                  Sign up
+                </a>
+              </div>
+            </CardFooter>
+          </Card>
+          
+</AuthPageLayout>

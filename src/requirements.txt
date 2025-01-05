@@ -8,3 +8,9 @@ psycopg2-binary
 passlib[bcrypt]
 flask
 flask-sqlalchemy
+Flask-WTF
+wtforms[email]
+jinjax
+basic-components[utils]
+Flask-WTF
+wtforms[email]

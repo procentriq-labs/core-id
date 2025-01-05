@@ -1,0 +1,12 @@
+{#def
+    htmlFor: str = "",
+    className: str = "",
+#}
+{% set baseclassName = "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %}
+<label
+    for="{{ htmlFor }}"
+    class="{{ baseclassName }} {{ className }}"
+    {{ attrs.render() }}
+>
+  {{ content }}
+</label>
