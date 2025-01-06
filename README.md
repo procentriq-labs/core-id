@@ -10,6 +10,8 @@ CoreID: A simple identity provider / authorization server handling authenticatio
 - [ ] **Refresh Token Flow** to limit validity of access token
 - [ ] **Scopes** on a per-resource level
 - [ ] **Dynamic Client Registration** for creating new API credentials dynamically
+- [ ] Expose **OpenID configuration**
+- [ ] Expose **JSON Web Key Sets** for easy verification of issued JWTs
 
 ## Setup
 
