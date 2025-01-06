@@ -1,6 +1,5 @@
 import uvicorn
 from fastapi import FastAPI
-from flask import Flask
 from fastapi.middleware.wsgi import WSGIMiddleware
 
 from app.config import load_settings, configure_logging

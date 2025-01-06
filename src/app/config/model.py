@@ -23,6 +23,10 @@ class ContactInfo(BaseSettings):
     distributor_contact_email: EmailStr
     tos_url: AnyHttpUrl
 
+class SecuritySettings(BaseSettings):
+    authorization_code_length: int = 36
+    authorization_code_validity_seconds: int = 60*2
+
 class Settings(BaseSettings):
     environment: str = "development"
     app_name: str = "CoreID"
@@ -35,6 +39,7 @@ class Settings(BaseSettings):
     connections: ConnectionSettings
     api_keys: APIKeys
     email: EmailSettings
+    security: SecuritySettings = SecuritySettings()
 
     class Config:
         env_prefix = ""  # To support env variables without a prefix

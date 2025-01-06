@@ -16,6 +16,27 @@
         </div>
         {{ tenant }}
       </a>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for type, message in messages %}
+            {% if type == 'message' or type == 'info' %}
+              <Alert>
+                <AlertTitle>Info</AlertTitle>
+                <AlertDescription>
+                    {{ message }}
+                </AlertDescription>
+              </Alert>
+            {% elif type == 'error' or type == 'error' %}
+              <Alert variant="destructive">
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>
+                    {{ message }}
+                </AlertDescription>
+              </Alert>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       <div class="flex flex-col gap-6">
         {{ content }}
       </div>

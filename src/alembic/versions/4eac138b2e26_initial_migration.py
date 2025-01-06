@@ -32,6 +32,7 @@ def upgrade():
         'users',
         sa.Column('id', sa.UUID(), primary_key=True, server_default=sa.text('gen_random_uuid()')),
         sa.Column('organization_id', sa.UUID(), sa.ForeignKey('organizations.id', ondelete='CASCADE')),
+        sa.Column('name', sa.String, nullable=False),
         sa.Column('email', sa.String, unique=True, nullable=False),
         sa.Column('hashed_password', sa.Text, nullable=False),
         sa.Column('email_verified', sa.Boolean, server_default='false', nullable=False),
@@ -112,7 +113,6 @@ def upgrade():
         sa.Column('code', sa.String, primary_key=True),
         sa.Column('application_id', sa.UUID(), sa.ForeignKey('applications.id', ondelete='CASCADE')),
         sa.Column('user_id', sa.UUID(), sa.ForeignKey('users.id')),
-        sa.Column('redirect_uri', sa.Text, nullable=False),
         sa.Column('expires_at', sa.DateTime, nullable=False),
         sa.Column('created_at', sa.DateTime, server_default=sa.text('NOW()'), nullable=False)
     )

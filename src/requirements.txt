@@ -14,3 +14,4 @@ jinjax
 basic-components[utils]
 Flask-WTF
 wtforms[email]
+requests
