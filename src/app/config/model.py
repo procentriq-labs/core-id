@@ -16,6 +16,7 @@ class APIKeys(BaseSettings):
 class EmailSettings(BaseSettings):
     sender_name: str
     sender_email: str
+    reply_email: str
 
 class ContactInfo(BaseSettings):
     distributor_name: str = "ProcentrIQ"
@@ -26,6 +27,7 @@ class ContactInfo(BaseSettings):
 class SecuritySettings(BaseSettings):
     authorization_code_length: int = 36
     authorization_code_validity_seconds: int = 60*2
+    email_verification_code_validity_seconds: int = 60*15
 
 class Settings(BaseSettings):
     environment: str = "development"
@@ -34,6 +36,7 @@ class Settings(BaseSettings):
     app_port: int = 8000
     app_version: str
     contact: ContactInfo
+    tenant_name: str
     logging: LoggerSettings = LoggerSettings()
     debug: bool = False
     connections: ConnectionSettings

@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, request, redirect, abort, url_for
+from flask import Blueprint, flash, request, abort, url_for
 from app.pages.flask_app import catalog
 
 from app.pages.forms.auth_forms import LoginForm
@@ -8,12 +8,13 @@ from app.models.payloads.authorization_params import AuthorizeParams
 from app.handlers.security_handler import SecurityHandler, InvalidResponseTypeException, InvalidRedirectURIException
 from app.utils.uuid_utils import decode_short_uuid
 from app.db import get_db_session
-
-from requests.models import PreparedRequest
+from app.config import load_settings
 
 import logging
 
 logger = logging.getLogger(__name__)
+
+settings = load_settings()
 
 login_router = Blueprint('login', __name__)
 
@@ -38,17 +39,13 @@ def login():
                 if UserHandler.check_password(u, login_form.password.data):
                     try:
                         client_uuid = decode_short_uuid(params.client_id)
-                        SecurityHandler.authorize_validate_params(client_uuid, params)
-                        authorization_code = SecurityHandler.generate_authorization_code(client_uuid, u.id)
-                        session.add(authorization_code)
-                        r = PreparedRequest()
-                        # Assumes authorization_code flow, as no other flow with login_screen is supported :)
-                        r.prepare_url(params.redirect_uri, params=dict(
-                            authorization_code=authorization_code.code,
-                            state=params.state,
-                            )
+                        return SecurityHandler.respond_authorize(
+                            client_uuid = client_uuid,
+                            user_uuid = u.id,
+                            response_types = params.response_type,
+                            redirect_uri = params.redirect_uri,
+                            state = params.state,
                         )
-                        return redirect(r.url, code=302)
                     except ValueError:
                         logger.info(f"Failed to decode client_id {params.client_id}")
                     except InvalidRedirectURIException:
@@ -62,6 +59,6 @@ def login():
     return catalog.render(
         "LoginPage",
         form = login_form,
-        signup_url = url_for('signup.signup', **params.model_dump())
-        # tenant="Test_Tenant",
+        signup_url = url_for('signup.signup', **params.model_dump()),
+        tenant=settings.tenant_name,
     )

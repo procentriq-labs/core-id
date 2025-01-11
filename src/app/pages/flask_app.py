@@ -18,3 +18,4 @@ catalog = Catalog(
 
 catalog.add_folder("app/pages/components/ui")
 catalog.add_folder("app/pages/components/layouts")
+catalog.add_folder("app/pages/components/pages")

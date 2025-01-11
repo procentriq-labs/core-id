@@ -1,9 +1,9 @@
-{#def form, login_url, app_name = "{{app_name}}", tenant="{{tenant}}"#}
-<AuthPageLayout title="Login" tenant={{ tenant }} app-name={{ app_name }}>
+{#def form, signup_url #}
+<AuthPageLayout title="Login" tenant={{ tenant }}>
           <Card>
             <CardHeader className="text-center">
-              <CardTitle class="text-xl">Welcome</CardTitle>
-              <CardDescription>Create an account</CardDescription>
+              <CardTitle class="text-xl">Welcome back</CardTitle>
+              <CardDescription>Login with your credentials</CardDescription>
             </CardHeader>
             <CardContent>
               <WTForm
@@ -11,7 +11,7 @@
               action=""
               method="POST">
                 <Button type="submit" className="w-full">
-                  Sign up
+                  Login
                 </Button>
               </WTForm>
             {# <div
@@ -23,9 +23,9 @@
             </CardContent>
             <CardFooter>
               <div class="text-center text-sm">
-                Already have an account?
-                <a href="{{ login_url }}" class="underline underline-offset-4">
-                  Log in instead
+                Don&apos;t have an account?
+                <a href="{{ signup_url }}" class="underline underline-offset-4">
+                  Sign up
                 </a>
               </div>
             </CardFooter>

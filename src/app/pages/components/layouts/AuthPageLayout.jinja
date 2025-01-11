@@ -1,19 +1,16 @@
-{#def title, tenant, app_name = "{{app_name}}" #}
+{#def title, tenant #}
 {#css https://rsms.me/inter/inter.css, css/base.css #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{{ title }} – {{ app_name }}</title>
+  <title>{{ title }} – {{ tenant }}</title>
   {{ catalog.render_assets() }}
 </head>
 <body>
   <div class="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
     <div class="flex w-full max-w-sm flex-col gap-6">
       <a href="#" class="flex items-center gap-2 self-center font-medium">
-        <div class="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-          <img class="size-4" src="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/osi.svg"></img>
-        </div>
         {{ tenant }}
       </a>
       {% with messages = get_flashed_messages(with_categories=true) %}

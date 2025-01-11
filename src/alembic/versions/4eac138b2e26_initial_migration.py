@@ -141,7 +141,7 @@ def upgrade():
     op.create_table(
         'verify_email_tokens',
         sa.Column('token', sa.String, primary_key=True),
-        sa.Column('user_id', sa.UUID(), sa.ForeignKey('users.id', ondelete='CASCADE')),
+        sa.Column('user_id', sa.UUID(), sa.ForeignKey('users.id', ondelete='CASCADE'), primary_key=True),
         sa.Column('expires_at', sa.DateTime, nullable=False),
         sa.Column('created_at', sa.DateTime, server_default=sa.text('NOW()'), nullable=False)
     )

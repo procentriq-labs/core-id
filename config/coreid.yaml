@@ -8,6 +8,7 @@ default:
     distributor_contact_email: "hi@procentriq.ch"
     tos_url: "https://github.com/procentriq-labs/core-id/blob/main/LICENSE.txt"
   debug: false
+  tenant_name: "test tenant:)"
   logging:
     logfile_path: "./logs"
     logfile_name: "coreid.log"
@@ -15,6 +16,10 @@ default:
     logfile_max_count: 5
   connections:
     database_url: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}"
+  security:
+    authorization_code_length: 36
+    authorization_code_validity_seconds: 120
+    email_verification_code_validity_seconds: 900
   
 development:
   app_name: "CoreID (Dev Build)"
@@ -23,7 +28,8 @@ development:
     resend: "${RESEND_API_KEY}"
   email:
     sender_name: "ProcentrIQ Dev"
-    sender_email: "coreid-app@projects.procentriq.ch"
+    sender_email: "coreid-app@inbound.projects.pxheller.co"
+    reply_email: "support@procentriq.ch"
 
 production:
   app_host: "0.0.0.0:8000"

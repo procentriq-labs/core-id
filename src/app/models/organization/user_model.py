@@ -4,10 +4,12 @@ from app.db import Base
 
 from passlib.context import CryptContext
 
-from app.utils.uuid_utils import encode_short_uuid
+from app.utils.uuid_utils import short_uuidable, encode_short_uuid
 
+@short_uuidable
 class User(Base):
     __tablename__ = "users"
+    __idkey__ = "u"
     _cyrpt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
     id = Column(UUID(as_uuid=True), primary_key=True, server_default=func.uuid_generate_v4())

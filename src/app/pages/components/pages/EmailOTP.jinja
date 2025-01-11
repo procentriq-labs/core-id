@@ -1,0 +1,23 @@
+{#def app_name, recipient_name, recipient_email, otp, otp_validity #}
+<EmailLayout title={{ 'Activate Your ' ~ app_name ~ ' Account' }} recipient_email={{ recipient_email }}>
+    <strong style="display: block;">Dear {{ recipient_name }},</strong>
+    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+        Thank you for creating an account with {{ app_name }}. To complete your registration and activate your account,
+        please use the following activation code.
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 0.875rem;"><strong>Your Account Activation Code is:</strong></p>
+    <h2 style="font-size: 1.5rem; font-weight: 800; letter-spacing: 0.5rem; margin: 0 auto; display: block; width: max-content;">
+        {{ otp }}
+    </h2>
+    <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+        <strong>This activation code is valid for {{ otp_validity }}. Do not share it with anyone.</strong>
+        <br /><br />
+        If you did not create an account with {{ app_name }}, please disregard this email.
+        <br /><br />
+        <strong>Thank you for choosing us.</strong>
+        <br /><br />
+        Best regards,
+        <br />
+        <strong>{{ app_name }}</strong>
+    </p>
+</EmailLayout>

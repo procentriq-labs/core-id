@@ -1,0 +1,27 @@
+{#def form, email, app_name = "{{app_name}}", tenant="{{tenant}}", email_sent=False#}
+{#js js/ActivateEmailPage.js #}
+<AuthPageLayout title="Login" tenant={{ tenant }} app-name={{ app_name }}>
+          <div id="hidden-data" data-email-sent="{{ email_sent }}"></div>
+          <Card>
+            <CardHeader className="text-center">
+              <CardTitle class="text-xl">You're almost there</CardTitle>
+              <CardDescription>We've sent a verification code to {{ email }}. Enter it to activate your account.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <WTForm
+              :form="{{ form }}"
+              action=""
+              method="POST">
+                <Button type="submit" className="w-full">
+                  Activate
+                </Button>
+              </WTForm>
+            </CardContent>
+            <CardFooter>
+              <div class="text-center text-sm">
+                <b>Can't find the code?</b> Make sure to check your junk mail or spam folder.
+              </div>
+            </CardFooter>
+          </Card>
+          
+</AuthPageLayout>
