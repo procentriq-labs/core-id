@@ -16,3 +16,4 @@ Flask-WTF
 wtforms[email]
 requests
 resend
+cryptography

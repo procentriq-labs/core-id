@@ -10,3 +10,8 @@ services:
     - ./config/coreid.yaml:/usr/src/config.yaml
     ports:
       - 8091:8000
+    secrets:
+       - jwt_signing_key
+secrets:
+  jwt_signing_key:
+    file: ./config/jwt.pem

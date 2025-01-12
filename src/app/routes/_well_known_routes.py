@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 
-from app.pages import flask_app
 from app.config import load_settings
+from app.security.key_management import KeyManager
 
 import logging
 
@@ -52,4 +52,12 @@ async def oidc_discovery(request: Request):
     
 @router.get("/oauth2/certs")
 async def list_jwks():
-    pass
+    k = KeyManager()
+    jwk_document = {"keys": [{
+        "kty": "RSA",
+        "use": "sig",
+        "kid": k.get_kid(),
+        **k.get_public_key_info(),
+        "alg": "RS256",
+    }]}
+    return jwk_document

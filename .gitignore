@@ -18,3 +18,7 @@ work
 
 # TailwindCSS CLI
 tailwindcss
+
+# cryptographic keys
+*.pem
+*.pem.pub
