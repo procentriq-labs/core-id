@@ -33,6 +33,7 @@ class Settings(BaseSettings):
     environment: str = "development"
     app_name: str = "CoreID"
     app_host: str = "0.0.0.0"
+    app_host_public_url: str
     app_port: int = 8000
     app_version: str
     contact: ContactInfo

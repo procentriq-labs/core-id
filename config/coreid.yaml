@@ -1,6 +1,7 @@
 default:
   app_name: "CoreID"
   app_host: "0.0.0.0:8000"
+  app_host_public_url: "http://localhost:8091/"
   app_version: "v0.1"
   contact:
     distributor_name: "ProcentrIQ"
