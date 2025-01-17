@@ -8,3 +8,9 @@ def add_get_params(request, d: dict) -> str:
     r = PreparedRequest()
     r.prepare_url(url, params={**request.args, **d})
     return r.url
+
+def amend_get_params(url: str, d: dict) -> str:
+    r = PreparedRequest()
+    r.prepare_url(url, params=d)
+    return r.url
+

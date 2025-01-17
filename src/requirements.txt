@@ -17,3 +17,5 @@ wtforms[email]
 requests
 resend
 cryptography
+pyJWT
+python-multipart

@@ -28,6 +28,10 @@ class SecuritySettings(BaseSettings):
     authorization_code_length: int = 36
     authorization_code_validity_seconds: int = 60*2
     email_verification_code_validity_seconds: int = 60*15
+    idtoken_validity_seconds: int = 60*60*10
+    access_token_validity_seconds: int = 60*60*24
+    refresh_token_length: int = 36
+    refresh_token_validity_seconds: int = 60*60*24*30
 
 class Settings(BaseSettings):
     environment: str = "development"

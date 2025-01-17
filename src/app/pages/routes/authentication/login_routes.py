@@ -45,6 +45,8 @@ def login():
                             response_types = params.response_type,
                             redirect_uri = params.redirect_uri,
                             state = params.state,
+                            scopes_str=params.scope,
+                            audience = params.audience,
                         )
                     except ValueError:
                         logger.info(f"Failed to decode client_id {params.client_id}")

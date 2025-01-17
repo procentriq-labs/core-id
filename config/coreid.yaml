@@ -21,6 +21,10 @@ default:
     authorization_code_length: 36
     authorization_code_validity_seconds: 120
     email_verification_code_validity_seconds: 900
+    idtoken_validity_seconds: 36000
+    access_token_validity_seconds: 86400
+    refresh_token_length: 36
+    refresh_token_validity_seconds: 2592000
   
 development:
   app_name: "CoreID (Dev Build)"

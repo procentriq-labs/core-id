@@ -7,6 +7,7 @@ from app.handlers.security_handler import SecurityHandler, InvalidResponseTypeEx
 from app.models.payloads.authorization_params import AuthorizeParams
 
 from app.utils.uuid_utils import decode_short_uuid
+from app.utils.url_utils import amend_get_params
 
 import logging
 
@@ -20,6 +21,8 @@ async def authorize(params: AuthorizeParams = Query()):
     Endpoint to handle OAuth2 authorization requests.
     """
     logger.info(f"Received {params.response_type} authentication request from client {params.client_id}")
+
+    # TODO in future, if scope offline_access (= refresh token) is requested, get user consent to stay logged in with application
     
     try:
         client_id = decode_short_uuid(params.client_id)
@@ -33,5 +36,5 @@ async def authorize(params: AuthorizeParams = Query()):
         raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail=f"'{params.redirect_uri}' is not a valid redirect_uri for your client.")
     except InvalidResponseTypeException as e:
         logger.info(f"Received invalid request for disallowed response_type from {params.client_id}: {str(e)}")
-        return RedirectResponse(params.redirect_uri, error="invalid_response_type", error_message=str(e), state=params.state)
+        return RedirectResponse(amend_get_params(url=params.redirect_uri, d=dict(error="invalid_response_type", error_message=str(e), state=params.state)))
 

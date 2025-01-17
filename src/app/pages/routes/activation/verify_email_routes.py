@@ -63,6 +63,8 @@ def activate():
                     response_types = params.response_type,
                     redirect_uri = params.redirect_uri,
                     state = params.state,
+                    scopes_str=params.scope,
+                    audience = params.audience,
                 )
             except InvalidRedirectURIException:
                 logger.info(f"Invalid redirect_uri {params.redirect_uri} for {params.client_id}")

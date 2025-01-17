@@ -25,8 +25,6 @@ async def oidc_discovery(request: Request):
         "jwks_uri": str(request.url_for("list_jwks")),
         "response_types_supported": [
             "code",
-            "id_token",
-            "token id_token"
         ], # dynamically fetch.. from where?
         "subject_types_supported": [
             "public"

@@ -61,7 +61,7 @@ def upgrade():
         sa.Column('id', sa.UUID(), primary_key=True, server_default=sa.text('gen_random_uuid()')),
         sa.Column('name', sa.String, nullable=False),
         # sa.Column('client_id', sa.UUID(), server_default=sa.text('gen_random_uuid()'), unique=True, nullable=False),
-        sa.Column('client_secret', sa.Text, nullable=False),
+        sa.Column('hashed_client_secret', sa.Text, nullable=False),
         sa.Column('is_first_party', sa.Boolean, nullable=False),
         sa.Column('created_by', sa.UUID(), sa.ForeignKey('users.id')),
         sa.Column('created_at', sa.DateTime, server_default=sa.text('NOW()'), nullable=False)
@@ -110,9 +110,12 @@ def upgrade():
     # Authorization codes table
     op.create_table(
         'authorization_codes',
-        sa.Column('code', sa.String, primary_key=True),
+        sa.Column('code_identifier', sa.String, primary_key=True),
+        sa.Column('hashed_code', sa.String, nullable=False),
         sa.Column('application_id', sa.UUID(), sa.ForeignKey('applications.id', ondelete='CASCADE')),
         sa.Column('user_id', sa.UUID(), sa.ForeignKey('users.id')),
+        sa.Column('scopes', sa.String, nullable=False, server_default=""),
+        sa.Column('audience', sa.String, nullable=False, server_default=""),
         sa.Column('expires_at', sa.DateTime, nullable=False),
         sa.Column('created_at', sa.DateTime, server_default=sa.text('NOW()'), nullable=False)
     )
@@ -122,7 +125,7 @@ def upgrade():
         'refresh_tokens',
         sa.Column('token', sa.String, primary_key=True),
         sa.Column('application_id', sa.UUID(), sa.ForeignKey('applications.id', ondelete='CASCADE')),
-        sa.Column('user_id', sa.UUID(), sa.ForeignKey('users.id')),
+        sa.Column('user_id', sa.UUID(), sa.ForeignKey('users.id'), nullable=True),
         sa.Column('scope', sa.Text, nullable=False),
         sa.Column('expires_at', sa.DateTime, nullable=False),
         sa.Column('created_at', sa.DateTime, server_default=sa.text('NOW()'), nullable=False)
